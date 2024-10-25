@@ -160,6 +160,10 @@ mod tests {
             serde_json::from_slice(&body_2).unwrap();
 
         assert_ne!(get_evidence_resp_1.evidence, get_evidence_resp_2.evidence);
+
+        // write the evidence to a file
+        let evidence_path = std::path::Path::new("./src/coco_aa/examples/evidence.txt");
+        std::fs::write(evidence_path, get_evidence_resp_1.evidence).unwrap();
     }
 
     #[tokio::test]
